@@ -1,0 +1,361 @@
+
+<div style="text-align: center;">
+  <div>
+    <div style="text-align: center;">
+        BILL OF LADING
+    </div>
+    <table></table>
+    <table style="border-collapse: collapse; width: 100%;" border="1">
+      <tbody>
+        <tr>
+          <td
+            colspan="3"
+            rowspan="2"
+            style="width:50%; height:100px; padding:6px;"
+          >
+            Shipper / Exporter (Complete name and address)
+            <div style="margin-top:4px; font-weight:bold;">
+              {{newBooking?.shipper | uppercase }}<br />
+              6500 Trans Canada Highway, <br />
+              4th Flooor, Pointe-Claire, Quebec, <br />
+              CANADA - H9R 0A5
+
+            </div>
+          </td>
+
+          <td style="height:10px;">
+            &nbsp;Booking No :
+            <div style="font-weight:bold">{{newBooking?.bookNo}}</div>
+          </td>
+          <td style="width:25%">
+            &nbsp;Bill of Lading No. :
+            <div style="font-weight:bold">{{newBooking?.billNo}}</div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            &nbsp;Export References
+            <br />
+            <b> {{newBooking?.exportRef | uppercase}} </b>
+          </td>
+        </tr>
+
+        <tr>
+          <td
+            colspan="3"
+            rowspan="2"
+            style="height:80px;vertical-align:top;padding:6px;"
+          >
+            Consignee (Complete name and address)
+            <div style="margin-top:4px; font-weight:bold;">
+              {{newBooking?.consignee}}<br />
+              250 North Bridge Road<br />
+              29-03 Raffles City Tower<br />
+              SINGAPORE - 179101
+            </div>
+          </td>
+
+          <td colspan="2" style="height:80px;padding:6px;">
+            Forwarding Agent References (Complete name and address)
+            <div style="margin-top:4px; font-weight:bold;">
+              {{newBooking?.forwordAgent}}<br />
+              Off. No. B 102, Ekvira Apartment, Opp. Shreenath Towers,<br />
+              Near Police Station, Malad (W), Mumbai - 400064<br />
+              MAHARASHTRA, (INDIA)
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2" style="height:10px;">
+            &nbsp;Point and Country of origin <br />
+            <span style="font-weight:bold">{{newBooking?.countryOrigin}}</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3" style="height:100px; vertical-align:top;padding:6px;">
+            Notify Party (Complete name and address)
+            <div style="margin-top:4px; font-weight:bold;">
+              {{newBooking?.notifyParty}} <br />
+              23, 81, Mugappair Rd, Mannurpet, <br />
+              Padi, Chennai - 600050, <br />
+              TAMIL NADU
+            </div>
+          </td>
+
+          <td colspan="2" style="padding:6px;">
+            Also Notify Party / Shipping Agent - Routing &amp; Instructions
+            <br />
+            (Complete name and address)
+            <div style="margin-top:4px; font-weight:bold;">{{newBooking?.notifyAndShippingAgent}}</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table style="border-collapse: collapse; width: 100%; " border="1" >
+      <tbody>
+        <tr>
+          <td colspan="" style="width:33.33%">
+            Pre-Carrige by
+            <div style="text-align: center;"><b>{{newBooking?.preCarrigeby}}</b></div>
+          </td>
+
+          <td colspan="" style="width:33.33%">
+            Place of Receipt *
+            <div style="text-align: center;"><b>{{newBooking?.placeReceipt}}</b></div>
+          </td>
+
+          <td colspan="" style="width:33.33%">
+            Port of Discharge
+            <div style="text-align: center;"><b>{{newBooking?.pod_code}}</b></div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="" style="width:33.33%">
+            &nbsp;Ocean Vessel/Voyage/Flag
+            <div style="text-align: center;">
+              <b>{{newBooking?.vesselName}}</b>
+            </div>
+          </td>
+
+          <td colspan="" style="width:33.33%">
+            &nbsp;Port of Loading
+            <div style="text-align: center;"><b>{{newBooking?.pol_code}}</b></div>
+          </td>
+
+          <td colspan="" style="width:33.33%">
+            &nbsp;Place of Delivery *
+            <div style="text-align: center;">
+              <b>{{newBooking?.pod_code}}</b>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="" style="width:33.33%" >
+            Onward Inland Routing
+            <div style="text-align: center;"><b>CANADA</b></div>
+          </td>
+
+          <td colspan="" style="width:33.33%">
+            For Transshipment To
+            <div style="text-align: center;"><b>-</b></div>
+          </td>
+
+          <td colspan="" style="width:33.33%">
+            Final Destination (For the Merchants Ref.)
+            <div style="text-align: center;"><b>{{newBooking?.finalDestination}}</b></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <table style="border-collapse: collapse; width: 100%" border="1">
+    <tbody>
+      <tr>
+        <td style="text-align: center;padding:5px;font-size:12px;" colspan="5">
+          <b> PARTICULARS FURNISHED BY SHIPPER </b>
+        </td>
+      </tr>
+
+      <tr>
+        <td style="text-align: center;">
+          Marks and Numbers<br />
+          Container No/Seal No
+        </td>
+
+        <td style="width:15%;">
+          <div style="text-align: center;">
+            No of Containers<br />
+            or Other Pakgs
+          </div>
+        </td>
+
+        <td>
+          <div style="text-align: center;">
+            Description of package and Goods
+          </div>
+        </td>
+        <td style="text-align:center;">Gross Weight</td>
+        <td style="text-align: center;">Measurement</td>
+      </tr>
+
+      <tr>
+        <td
+          style="padding-top:5px;height:150px;vertical-align:top;text-align: left;border-right:1px solid white;"
+        >
+          <div style="margin-left:2px;">
+            {{newBooking?.marksAndNumber}}<br />
+            <br />
+            FL/FL<br />
+            {{newBooking?.trackingContainerNo}}<br />
+            <br />
+            <br />
+            {{newBooking?.sealNo}}
+          </div>
+        </td>
+
+        <td
+          style="padding-top:5px;vertical-align:top;text-align: center;border-right:1px solid white;"
+        >
+          {{newBooking?.noContainerPkgs}}
+          <br />
+        </td>
+        <td
+          style="padding-top:5px;vertical-align:top;text-align: left;border-right:1px solid white;"
+        >
+          {{newBooking?.commuditydetails}}
+        </td>
+
+        <td
+          style="padding-top:5px;vertical-align:top;text-align: center;border-right:1px solid white;"
+        >
+          {{newBooking?.containerGrossWeight}}
+        </td>
+
+        <td style="padding-top:5px;vertical-align:top;text-align: center;">
+          
+          {{newBooking?.measurement}}
+        </td>
+      </tr>
+
+      <tr>
+        <td style="text-align: left;" colspan="5">
+          &nbsp;Total Number of Containers or Packages (in words) <br />
+          {{newBooking?.noContainerPkgs}}
+        </td>
+      </tr>
+
+      <tr>
+        <td style="width:15%; vertical-align:top;">
+          &nbsp;Freight and Charges<br />
+          <p style="margin-top:-1px; text-align:center">{{newBooking?.freightCharges}}</p>
+        </td>
+
+        <td rowspan="1" style="height:10px; width:5px;vertical-align:top;">
+          &nbsp; Ex. Rate<br />
+          <p style="margin-top:-1px; text-align:center">{{newBooking?.excRate}}</p>
+        </td>
+
+        <td rowspan="2" style="height:50px; vertical-align:top;">
+          &nbsp; Unit
+          <div style="text-align: center;">{{newBooking?.units}}</div>
+        </td>
+
+        <td rowspan="2" style="height:50px; width:15%; vertical-align:top;">
+          &nbsp; Prepaid
+          <div style="text-align: center;">{{newBooking?.prepaid}}</div>
+        </td>
+
+        <td rowspan="2" style="height:50px; width:15%; vertical-align:top;">
+          &nbsp; Collect
+          <div style="text-align: center;">{{newBooking?.collect}}</div>
+        </td>
+      </tr>
+      <tr>
+        <td
+          colspan="2"
+          style="height:80px; width:30%; padding:4px;vertical-align:top;"
+        >
+          Delivery Agent :<br />
+          {{newBooking?.deliveryAgent}}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          &nbsp;Declared Value (Optional) :
+          <div style="text-align: center;">{{newBooking?.declaredValue}}</div>
+        </td>
+        <td>
+          &nbsp;Total Charges
+          <div style="text-align: center;">{{newBooking?.totalCharges}}</div>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table style="border-collapse: collapse;" border="1">
+    <tbody>
+      <tr>
+        <td
+          colspan="3"
+          rowspan="2"
+          style="width:50%; padding:4px; text-align:justify; font-size:8px;height:100px"
+        >
+          &nbsp;TERMS AND CONDITION :
+          <span style="font-size:9px;">
+            RECEIVED by the Carrier from the Shipper in apparent good order and
+            condition unless otherwise indicated herein, the Goods, or
+            package(s) said to contain the Goods, to be carried subject to all
+            the terms and conditions herein. Delivery of the Goods to the
+            Carrier for Carriage hereunder constitutes the Merchant's acceptance
+            of all the stipulations, exceptions, terms and conditions of this
+            Bill as fully as if signed by him, any contrary local custom or
+            privilege notwithstanding. This Bill supersedes all prior agreements
+            or freight engagements for the Goods. This Bill (duly endorsed if it
+            is negotiable) must be surrendered in exchange for the Goods or
+            delivery order. Where issued as a Sea Waybill, this Bill is not
+            negotiable or a document of title and delivery shall be made to the
+            named consignee on production of such reasonable proof of identity
+            as may be required by the Carrier. In witness whereof, the
+            undersigned, on behalf of H&amp;H LOGISTICS CO., LTD. and the Vessel
+            and/or her owner, has signed the number of Bills stated hereunder,
+            all of this tenor and date. Where issued as a Bill of Lading,
+            delivery may be made against only one original Bill in which case,
+            the others shall stand void.
+          </span>
+          <p></p>
+        </td>
+        <td style="height:10px;width:25%;">
+          &nbsp;Number of Original B/L(S)
+          <div style="text-align: center;">{{newBooking?.noBl}}</div>
+        </td>
+        <td style="width:25%">
+          &nbsp;Place &amp; Date of Issued
+          <div style="text-align: center;">VANCOUVER, CANADA 26/10/2018</div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="width:50%">
+          &nbsp;Dated at : &nbsp;26/10/2018 <br />
+          <p
+            style="border-top:1px solid #000; width:80%; margin-top:4px;font-size:15px;font-weight:bold;"
+          >
+            &nbsp;for the carrier H&amp;H LOGISTICS CO.,LTD
+          </p>
+          <br />
+
+          <p style="width:80%;">
+            ..................................................................................................<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;AS AGENT(S) FOR THE CARRIER NAMED ABOVE
+          </p>
+        </td>
+      </tr>
+      <tr style="height:50px;">
+        <td style="font-size:8px;padding:4px;" colspan="4">
+          <b> &nbsp; Remarks : </b> <br />
+          The Receipt, Custody, Carriage And Delivery Of The Goods Are Subject
+          To The Terms Appearing On The Face And Back Hereof And To The
+          Carrier's Applicable Tariff.
+        </td>
+
+        <td style="vertical-align:middle;" colspan="4">
+          <br />
+          <div style="text-align: center;">
+            <img
+              src="http://hhlogisticsgroup.com/barcode/HHLC8956127.png"
+              height="45"
+              width="185"
+            />
+            &nbsp;
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

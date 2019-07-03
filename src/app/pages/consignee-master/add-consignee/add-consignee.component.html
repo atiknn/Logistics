@@ -1,0 +1,136 @@
+
+<div *ngIf="msg" [ngClass]="alerts" role="alert">
+  {{msg}}
+</div>
+<form class="form form-horizontal" [formGroup]="regularForms" (ngSubmit)="onsubmit(regularForms.value)" role="form">
+  <div class="form-body">
+    <h4 class="form-section"><i class="ft-info"></i> About Consignee</h4>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label class="col-md-3 label-control" for="userinput1">Name: </label>
+          <div class="col-md-9">
+            <input type="text" id="userinput1" class="form-control" formControlName="name" name="name" required>
+            <div *ngIf="regularForms.get('name').hasError('required') && regularForms.get('name').touched">
+              <span class="text-danger align-middle">
+              Name required
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-md-3 label-control" for="userinput1">City: </label>
+            <div class="col-md-9">
+              <input type="text" id="userinput1" class="form-control" formControlName="city" name="name" required>
+              <div *ngIf="regularForms.get('city').hasError('required') && regularForms.get('city').touched">
+                <span class="text-danger align-middle">
+                    City required
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+          <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-md-3 label-control" for="userinput1">Country: </label>
+                <div class="col-md-9">
+                  <input type="text" id="userinput1" class="form-control" formControlName="country" name="name" required>
+                  <div *ngIf="regularForms.get('country').hasError('required') && regularForms.get('country').touched">
+                    <span class="text-danger align-middle">
+                    Country required
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="row">
+          <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-md-3 label-control" for="userinput1">Contact: </label>
+                <div class="col-md-9">
+                  <input type="text" id="userinput1" class="form-control" formControlName="contact_no" name="name" required>
+                  <div *ngIf="regularForms.get('contact_no').hasError('required') && regularForms.get('contact_no').touched">
+                    <span class="text-danger align-middle">
+                    Contact no required
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="userinput5">Email: </label>
+                  <div class="col-md-9">
+                    <input class="form-control" formControlName="email_id"  type="email" id="userinput5" required>
+                    <div *ngIf="regularForms.get('email_id').hasError('required') && regularForms.get('email_id').touched">
+                      <span class="text-danger align-middle">
+                        Email id required
+                      </span>
+                  </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group row">
+                  <label class="col-md-2 label-control" for="userinput1">Address 1: </label>
+                  <div class="col-md-9">
+                    <input type="text" id="userinput1" class="form-control" formControlName="address1" name="name" required>
+                    <div *ngIf="regularForms.get('address1').hasError('required') && regularForms.get('address1').touched">
+                      <span class="text-danger align-middle">
+                          Address1 required
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+              <div class="form-group row">
+                <label class="col-md-2 label-control" for="userinput1">Address 2: </label>
+                <div class="col-md-9">
+                  <input type="text" id="userinput1" class="form-control" formControlName="address2" name="name" required>
+                  <div *ngIf="regularForms.get('address2').hasError('required') && regularForms.get('address2').touched">
+                    <span class="text-danger align-middle">
+                        Address2 required
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group row">
+              <label class="col-md-2 label-control" for="userinput1">Address 3: </label>
+              <div class="col-md-9">
+                <input type="text" id="userinput1" class="form-control" formControlName="address3" name="name" required>
+                <div *ngIf="regularForms.get('address3').hasError('required') && regularForms.get('address3').touched">
+                  <span class="text-danger align-middle">
+                      Address3 required
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+
+  
+
+  <div class="form-actions right">
+    <button type="button" class="btn btn-raised btn-warning mr-1">
+      <i class="ft-x"></i> Cancel
+    </button>
+    <button type="submit" class="btn btn-raised btn-primary" [disabled]="!regularForms.valid">
+      <i class="fa fa-check-square-o"></i> Save
+    </button>
+  </div>
+</form>

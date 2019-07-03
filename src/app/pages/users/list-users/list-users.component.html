@@ -1,0 +1,42 @@
+<section id="simple-table">
+    <div class="row text-left">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Users</h4>
+          </div>
+          <div class="card-content">
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th> Name</th>
+                    <th> userName</th>
+                    <th> Role</th>
+                    <th> Status</th>
+                    <th> Email</th>
+                    <th> Contact No</th>
+                    <th> Address</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of allusers | async">
+                    <th scope="row">{{item.id}}</th>
+                    <td>{{item.name}}</td>
+                    <td>{{item.username}}</td>
+                    <td>{{item.role}}</td>
+                    <td>{{item.status}}</td>
+                    <td>{{item.email_id}}</td>
+                    <td>{{item.contact_no}}</td>
+                    <td>{{item.address}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- {{allusers|json}} -->

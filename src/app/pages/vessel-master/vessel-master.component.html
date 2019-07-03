@@ -1,0 +1,31 @@
+<section id="form-action-layouts">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="content-header">Vessel Master</div>
+    </div>
+  </div>
+  <div class="row text-left">
+      <div class="col-md-11">
+        <div class="card">
+          <div class="card-header">
+              <!-- <h1>User Managements</h1> -->
+          </div>
+          <div class="card-content">
+              <ngb-tabset>
+                  <ngb-tab title="Vessel List">
+                    <ng-template ngbTabContent>
+                      <app-list-vessel-master></app-list-vessel-master>
+                    </ng-template>
+                  </ngb-tab>
+                  <ngb-tab>
+                    <ng-template ngbTabTitle>Add Vessel</ng-template>
+                    <ng-template ngbTabContent>
+                        <app-add-vessel-master></app-add-vessel-master>
+                    </ng-template>
+                  </ngb-tab>
+                </ngb-tabset>
+          </div>  
+        </div>
+      </div>
+  </div>      
+</section>

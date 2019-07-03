@@ -1,0 +1,166 @@
+<section id="buttons">
+    <!-- <div class="row  text-left">
+      <div class="col-sm-12 mt-2">
+        <div class="content-header"></div>
+      </div>
+    </div> -->
+    <div class="row" matchHeight="card">
+      <!--Button Sizes Starts -->
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Edit User - {{userDetails?.id}}</h4>
+          </div>
+          <div *ngIf="msg" [ngClass]="alerts" role="alert">
+            {{msg}}
+        </div>
+          <div class="card-content">
+            <div class="card-body">
+              <form class="form form-horizontal">
+                  <div class="form-group">
+                    <!-- <legend>Form title</legend> -->
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                      <form class="form form-horizontal" [formGroup]="regularForms" (ngSubmit)="onsubmit(regularForms.value)" role="form">
+                        <div class="form-body">
+                          <!-- <h4 class="form-section"><i class="ft-info"></i> About User</h4> -->
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput1">Name: </label>
+                                <div class="col-md-9">
+                                  <input type="text" id="userinput1" class="form-control" formControlName="name" name="name" required>
+                                  <div *ngIf="regularForms.get('name').hasError('required') && regularForms.get('name').touched">
+                                    <span class="text-danger align-middle">
+                                    Name required
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput2">Username: </label>
+                                <div class="col-md-9">
+                                  <input type="text" id="userinput2" class="form-control" formControlName="username" name="username" required>
+                                  <div *ngIf="regularForms.get('username').hasError('required') && regularForms.get('username').touched">
+                                    <span class="text-danger align-middle">
+                                    Username required
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="role">Role: </label>
+                                <div class="col-md-9">
+                                  <!-- <input type="text" id="userinput3" class="form-control border-primary" name="username"> -->
+                                  <ng-select [items]="roles" name="role" id="role" formControlName="role" bindValue="id" bindLabel="name" [(ngModel)]="roless" >
+                                  </ng-select>
+                                  <div *ngIf="regularForms.get('role').hasError('required') && regularForms.get('role').touched">
+                                    <span class="text-danger align-middle">
+                                      Role required
+                                    </span>
+                                </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput4">Date of Birth: </label>
+                                <div class="col-md-9">
+                                  <input type="date" id="userinput4" formControlName="dob" class="form-control" name="dob" required>
+                                  <div *ngIf="regularForms.get('dob').hasError('required') && regularForms.get('dob').touched">
+                                    <span class="text-danger align-middle">
+                                      Date of Birth required
+                                    </span>
+                                </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="status">Status: </label>
+                                <div class="col-md-9">
+                                  <!-- <input type="text" id="userinput3" class="form-control border-primary" name="username"> -->
+                                  <ng-select [items]="sta" name="status" id="status" formControlName="status" bindValue="id" bindLabel="name" [(ngModel)]="statuss">
+                                  </ng-select>
+                                  <div *ngIf="regularForms.get('status').hasError('required') && regularForms.get('status').touched">
+                                    <span class="text-danger align-middle">
+                                      status required
+                                    </span>
+                                </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+          
+                          <h4 class="form-section"><i class="ft-mail"></i> Contact Info & Bio</h4>
+          
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput5">Email: </label>
+                                <div class="col-md-9">
+                                  <input class="form-control" formControlName="email_id"  type="email" id="userinput5" required>
+                                  <div *ngIf="regularForms.get('email_id').hasError('required') && regularForms.get('email_id').touched">
+                                    <span class="text-danger align-middle">
+                                      Email id required
+                                    </span>
+                                </div>
+                                </div>
+                              </div>
+          
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control">Contact Number: </label>
+                                <div class="col-md-9">
+                                  <input class="form-control" formControlName="contact_no" type="number" id="userinput7" required>
+                                  <div *ngIf="regularForms.get('contact_no').hasError('required') && regularForms.get('contact_no').touched">
+                                    <span class="text-danger align-middle">
+                                      Contact No required
+                                    </span>
+                                </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput8">Address: </label>
+                                <div class="col-md-9">
+                                  <textarea id="userinput8" rows="6" class="form-control col-md-9" formControlName="address" name="bio" required></textarea>
+                                  <div *ngIf="regularForms.get('address').hasError('required') && regularForms.get('address').touched">
+                                    <span class="text-danger align-middle">
+                                      Address required
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+          
+                        <div class="form-actions right">
+                          <button type="button" class="btn btn-raised btn-warning mr-1">
+                            <i class="ft-x"></i> Cancel
+                          </button>
+                          <button type="submit" class="btn btn-raised btn-primary" [disabled]="!regularForms.valid">
+                            <i class="fa fa-check-square-o"></i> Save
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Button Sizes Ends -->
+    </div>
+  </section>

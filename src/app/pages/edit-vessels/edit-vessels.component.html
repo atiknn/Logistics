@@ -1,0 +1,100 @@
+<section id="form-action-layouts">
+    <div class="row text-left">
+      <div class="col-sm-12">
+        <div class="content-header">Vessel Master</div>
+      </div>
+    </div>
+    <div class="row text-left">
+        <div class="col-md-11">
+          <div class="card">
+            <div class="card-header">
+                <!-- <h1>User Managements</h1> -->
+            </div>
+            <div class="card-content">
+              <div class="card-body">
+                
+<div *ngIf="msg" [ngClass]="alerts" role="alert">
+    {{msg}}
+  </div>
+  <form class="form form-horizontal" [formGroup]="regularForms" (ngSubmit)="onsubmit(regularForms.value)" role="form">
+    <div class="form-body">
+      <h4 class="form-section"><i class="ft-info"></i> About Vessel</h4>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-md-3 label-control" for="userinput1">Name: </label>
+            <div class="col-md-9">
+              <input type="text" id="userinput1" class="form-control" formControlName="name" name="name" required>
+              <div *ngIf="regularForms.get('name').hasError('required') && regularForms.get('name').touched">
+                <span class="text-danger align-middle">
+                Name required
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-md-3 label-control" for="userinput2">Nike Name: </label>
+            <div class="col-md-9">
+              <input type="text" id="userinput2" class="form-control" formControlName="nikename" name="username" required>
+              <div *ngIf="regularForms.get('nikename').hasError('required') && regularForms.get('nikename').touched">
+                <span class="text-danger align-middle">
+                  nikename required
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+                <div class="col-md-3">
+                  <a  (click)="addButtonClick()"> <i class="ft-plus"></i>Add Ports</a>
+                  </div>
+            </div>
+          </div>
+      </div>      
+      <div formArrayName="routess" *ngFor="let other of regularForms.get('routess')['controls']; let i = index" class="form-group">
+          <div [formGroupName]="i">  
+        <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="role">Port Name: </label>
+                  <div class="col-md-9">
+                    <input type="text"  id="userinput4" class="form-control" formControlName="port_name">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="userinput4">Country Name: </label>
+                  <div class="col-md-9">
+                    <input type="text" id="userinput4" formControlName="country_name" class="form-control" name="dob" required>
+                    <a *ngIf="regularForms.get('routess').length > 1"
+                        (click)="removeMobileno(i)">Remove</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>   
+      </div>
+      
+    </div>
+    <div class="form-actions right">
+      <button type="button" class="btn btn-raised btn-warning mr-1">
+        <i class="ft-x"></i> Cancel
+      </button>
+      <button type="submit" class="btn btn-raised btn-primary" [disabled]="!regularForms.valid">
+        <i class="fa fa-check-square-o"></i> Save
+      </button>
+    </div>
+  </form>
+  
+              </div>
+            </div>
+          </div> 
+        </div>
+    </div>
+</section>    

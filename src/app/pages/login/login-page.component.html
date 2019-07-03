@@ -1,0 +1,66 @@
+<!--Login Page Starts-->
+<section id="login">
+  <div class="container-fluid">
+    <div class="row full-height-vh m-0">
+      <div class="col-12 d-flex align-items-center justify-content-center">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="row">
+                <!-- <div
+                  class="col-lg-6 d-lg-block d-none py-2 px-3 text-center align-middle"
+                >
+                  <img
+                    src="../../assets/img/gallery/login.png"
+                    alt=""
+                    class="img-fluid mt-5"
+                    width="400"
+                    height="230"
+                  />
+                </div> -->
+                <div class="col-lg-12 col-md-12">
+                  <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" role="form">
+                  <h4 class="card-title mb-2">Login</h4>
+                  <p class="card-text mb-3">
+                    Welcome back, please login to your account.
+                  </p>
+                  <input
+                    type="text"
+                    class="form-control mb-3"
+                    placeholder="Username"
+                    [(ngModel)]="models.username"
+                    name="username"
+                    #username="ngModel"
+                    required
+                  />
+                  <input
+                    type="password"
+                    class="form-control mb-3"
+                    placeholder="Password"
+                    [(ngModel)]="models.password"
+                    name="password"
+                    #password="ngModel"
+                    required
+                  />
+                  <div class="fg-actions d-flex justify-content-center">
+                    <div class="justify-content-center">
+                        <div class="recover-pass">
+                            <button class="btn btn-primary" type="submit" [disabled]="!f.valid">
+                              <a
+                                class="text-decoration-none text-white"
+                                >Login</a>
+                            </button>
+                          </div>
+                    </div>
+                  </div>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Login Page Ends-->

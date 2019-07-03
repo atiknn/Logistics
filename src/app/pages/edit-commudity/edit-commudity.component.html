@@ -1,0 +1,95 @@
+<section id="form-action-layouts">
+    <div class="row text-left">
+      <div class="col-sm-12">
+        <div class="content-header">Edit Commudity Master</div>
+      </div>
+    </div>
+    <div class="row text-left">
+        <div class="col-md-11">
+          <div class="card">
+            <div class="card-header">
+                <!-- <h1>User Managements</h1> -->
+            </div>
+            <div class="card-content">
+                <div class="card-body">            
+                  <div *ngIf="msg" [ngClass]="alerts" role="alert">
+                    {{msg}}
+                  </div>
+                  <form class="form form-horizontal" [formGroup]="regularForms" (ngSubmit)="onsubmit(regularForms.value)" role="form">
+                      <div class="form-body">
+                        <h4 class="form-section"><i class="ft-info"></i> About Commudity </h4>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-md-3 label-control" for="product_name">Product Name: </label>
+                              <div class="col-md-9">
+                                <input type="text" id="userinput1" class="form-control" formControlName="product_name" name="product_name" required>
+                                <div *ngIf="regularForms.get('product_name').hasError('required') && regularForms.get('product_name').touched">
+                                  <span class="text-danger align-middle">
+                                  Product Name required
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                  <a  (click)="addButtonClick()"> <i class="ft-plus"></i>Add</a>
+                                  </div>
+                            </div>
+                          </div>
+                      </div>  
+                        <div formArrayName="catAndDiscription" *ngFor="let other of regularForms.get('catAndDiscription')['controls']; let i = index" class="form-group">
+                          <div [formGroupName]="i">
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <div class="form-group row">
+                                    <label class="col-md-3 label-control" for="product_name">Category: </label>
+                                    <div class="col-md-9">
+                                      <input type="text" id="userinput1" class="form-control" formControlName="category" name="product_name" required>
+                                      <a *ngIf="regularForms.get('catAndDiscription').length > 1"
+                                        (click)="remove(i)">Remove</a>
+                                      <!-- <div *ngIf="regularForms.get('catAndDiscription').get('category').hasError('required') && regularForms.get('catAndDiscription').get('category').touched">
+                                        <span class="text-danger align-middle">
+                                          category required
+                                        </span>
+                                      </div> -->
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-2 label-control" for="userinput1"></label>
+                                  <div class="col-md-9">
+                                    <textarea type="text" id="userinput1" class="form-control" formControlName="product_discribtion" name="product_discribtion" placeholder="Product Discription" required></textarea>  
+                                    <!-- <div *ngIf="regularForms.get('catAndDiscription').get('product_discribtion').hasError('required') && regularForms.get('catAndDiscription').get('product_discribtion').touched">
+                                      <span class="text-danger align-middle">
+                                              product_discribtion required
+                                      </span>
+                                        </div> -->
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+                            </div>
+                            </div>
+                      </div>
+                      <div class="form-actions right">
+                        <button type="button" class="btn btn-raised btn-warning mr-1">
+                          <i class="ft-x"></i> Cancel
+                        </button>
+                        <button type="submit" class="btn btn-raised btn-primary" [disabled]="!regularForms.valid">
+                          <i class="fa fa-check-square-o"></i> Save
+                        </button>
+                      </div>
+                    </form>
+                    
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</section>                  

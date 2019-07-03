@@ -1,0 +1,679 @@
+<section id="buttons">
+  <!-- <div class="row  text-left">
+    <div class="col-sm-12 mt-2">
+      <div class="content-header">New Booking</div>
+    </div>
+  </div> -->
+  <div class="row text-left">
+    <!--Flat Buttons Starts -->
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"></h4>
+          <!-- <p>Use class <code>.btn-flat</code> for flat buttons.</p> -->
+          <div *ngIf="msg" [ngClass]="alerts" role="alert">
+            {{msg}}
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <!-- witing content -->
+            
+            <form class="form form-horizontal" [formGroup]="regularForms" (ngSubmit)="onsubmit(regularForms.value)" role="form" >
+            <ngb-tabset>
+            <!-- <form class="form form-horizontal" [formGroup]="regularForms" (ngSubmit)="onsubmit(regularForms.value)" role="form" > -->
+              <ngb-tab title="Shipper And Receiver Information">
+                  <ng-template ngbTabContent>
+                  <div class="form">
+                      <div class="form-body">
+                        <br>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                  <label class="col-md-3 label-control" for="shipper">BL No : </label>
+                                  <div class="col-md-9">
+                                  <input type="text" class="form-control" name="shipper" [(ngModel)]="randomnumber" formControlName="billNo" placeholder="Search" disabled/>
+                                </div>
+                                </div>
+                            </div>  
+                          </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-md-3 label-control" for="shipper">Shipper/Exporter : </label>
+                              <div class="col-md-9">
+                                  <!-- <ng-template #rt let-r="result" let-t="term">
+                                    <table class="">
+                                        <tbody>
+                                    <tr>
+                                      <td> 
+                                        <div class="col-md-4">
+                                        {{r.id}}
+                                      </div>
+                                    </td>
+                                      <td> 
+                                          <div class="col-md-4" (click)="onselectClient(r.name, r)">
+                                            {{ r.name}}
+                                          </div>
+                                      </td>
+                                      <td> 
+                                          <div class="col-md-4" (click)="onselectClient(r.name, r)">
+                                            {{ r.email_id}}
+                                          </div>
+                                      </td>
+                                      <td> 
+                                        <div class="col-md-4" (click)="onselectClient(r.name, r)">
+                                          {{ r.address1}}
+                                          {{r.address2}}
+                                          {{r.address3}}
+                                        </div>
+                                    </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                  </ng-template>
+                                  <input type="text" class="form-control" name="shipper" formControlName="shipper" [ngbTypeahead]="searchFlags" [resultTemplate]="rt" [inputFormatter]="formatter1"
+                                    placeholder="Search" /> -->
+                                    <!-- [(ngModel)]="modelTemp" -->
+                                  <ng-select [items]="shippermaster" id="userinput3" valueChanges="" formControlName="forwordAgent" bindValue="name" bindLabel="name" placeholder="Select" (change)='onChangeShipper($event)' >
+                                    </ng-select>
+                                  Model: {{ modelTemp   }}
+                                  <br>
+                                  Address : {{expaddress}}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-md-3 label-control" for="userinput2">Export Reference : </label>
+                              <div class="col-md-9">
+                                <input type="text" formControlName="exportRef" id="userinput2" class="form-control" name="lastname">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-md-3 label-control" for="userinput3">Consignee: </label>
+                              <div class="col-md-9">
+                                <!-- <textarea type="text" id="userinput3" class="form-control border-primary" name="username"></textarea> -->
+                                <ng-select [items]="consignne" id="userinput3" valueChanges="" formControlName="consignee" bindValue="name" (change)='onChange($event)' bindLabel="name" placeholder="Select " >
+                                </ng-select>
+                                Name: {{consigneeName}}
+                                <br>
+                                Address: {{consigneeAddress}}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-md-3 label-control" for="userinput4">Forwaring Agent References : </label>
+                              <div class="col-md-9">
+                                  <ng-select [items]="agentMaster" id="userinput3" valueChanges="" formControlName="forwordAgent" bindValue="name" bindLabel="name" placeholder="Select" >
+                                  </ng-select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput3">Notify Party: </label>
+                                <div class="col-md-9">
+                                    <!-- <select type="text" id="userinput3" class="form-control border-primary" name="username" rows=5>
+                                        <option diabled>Select Notify Party</option>
+                                        <option *ngFor="let item of notifyMaster" [value]="item.id">{{item.name}}</option>
+                                      </select> -->
+                                      <ng-select [items]="notifyMaster" id="userinput3" valueChanges="" formControlName="notifyParty"  bindValue="name" bindLabel="name" (change)='notifyParty($event)' placeholder="Select" >
+                                      </ng-select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput4">Point and Country Origin : </label>
+                                <div class="col-md-9">
+                                    <!-- <ng-select [items]="portsData" id="userinput3" bindValue="id" formControlName="countryOrigin" bindLabel="Country"  placeholder="Select" >
+                                      </ng-select> -->
+                                      <input type="text" class="form-control" name="shipper" formControlName="countryOrigin" placeholder="Search" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label class="col-md-3 label-control" for="userinput3">Also Notify Party / Shipping Agent - Routing & Instructions : </label>
+                                  <div class="col-md-9">
+                                    <textarea type="text" id="userinput3" class="form-control" name="username" formControlName="notifyAndShippingAgent" [value]="notifyPartyAddress" rows=5></textarea>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-md-3 label-control" for="vesselName">Vessel Name : </label>
+                              <div class="col-md-9">
+                                <!-- <select id="vesselName" class="form-control border-primary" name="vesselName" (change)="onSelectVessel($event)" >
+                                  <option disabled>Select Vessel</option>
+                                  <option *ngFor="let item of vesselname" value="{{item.id}}"><a>{{item.name}}</a></option>
+                                </select> -->
+                                <ng-select [items]="vesselname" id="userinput3" bindValue="name"  bindLabel="name" formControlName="vesselName" (change)="onSelectVessel($event)" placeholder="Select" >
+                                </ng-select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-md-3 label-control" for="voyagenos">Voyage No :</label>
+                              <div class="col-md-9">
+                                <input type="text" name="voyagenos" formControlName="voyagenos" [(ngModel)]="voyageno"  class="form-control" >
+                                <div>{{voyageno}}</div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-md-3 label-control" for="userinput7">Pre-Carrige by : </label>
+                              <div class="col-md-9">
+                                <!-- <select type="text" id="userinput7" class="form-control border-primary" name="username">
+                                    <option disabled>Select Pre-Carrige by</option>
+                                  <option *ngFor="let item of preorigin">{{item.country_name}}</option>
+                                </select> -->
+                                <ng-select [items]="preorigin" id="userinput3" bindValue="country_name" formControlName="preCarrigeby" bindLabel="country_name" placeholder="Select" >
+                                </ng-select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-md-3 label-control" for="userinput4">Place of Receipt *:</label>
+                              <div class="col-md-9">
+                                  <!-- <select type="text" id="userinput7" class="form-control border-primary" name="username">
+                                      <option disabled>Select Place of Receipt</option>
+                                      <option *ngFor="let item of preorigin">{{item.port_name}}</option>
+                                    </select> -->
+                                    <ng-select [items]="preorigin" id="userinput3" bindValue="port_name" formControlName="placeReceipt" bindLabel="port_name" placeholder="Select" >
+                                    </ng-select>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-md-3 label-control" for="userinput7">Onward Inland Routing : </label>
+                              <div class="col-md-9">
+                                  <!-- <select type="text" id="userinput7" class="form-control border-primary" name="username">
+                                      <option disabled>Select Inland Routing</option>
+                                      <option *ngFor="let item of preorigin">{{item.country_name}}</option>
+                                  </select> -->
+                                  <ng-select [items]="preorigin" id="userinput3" bindValue="country_name" formControlName="inlandRouting" bindLabel="country_name" placeholder="Select" >
+                                  </ng-select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-md-3 label-control" for="userinput4">Place of Delivery *:</label>
+                              <div class="col-md-9">
+                                  <!-- <select type="text" id="userinput7" class="form-control border-primary" name="username">
+                                      <option disabled>Select of Delivery</option>
+                                      <option *ngFor="let item of preorigin">{{item.country_name}}</option>
+                                  </select> -->
+                                  <ng-select [items]="preorigin" id="userinput3" bindValue="country_name" formControlName="placeDelivery" bindLabel="country_name" placeholder="Select" >
+                                </ng-select>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-md-3 label-control" for="userinput7">Final Destination : </label>
+                              <div class="col-md-9">
+                                  <!-- <select type="text" id="userinput7" class="form-control border-primary" name="username">
+                                      <option *ngFor="let item of preorigin">{{item.country_name}}</option>
+                                    </select> -->
+                                    <ng-select [items]="preorigin" id="userinput3" bindValue="country_name" formControlName="finalDestination" bindLabel="country_name" placeholder="Select" >
+                                    </ng-select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-md-3 label-control" for="userinput4">For Transshipment To :</label>
+                              <div class="col-md-9">
+                                  <!-- <select type="text" id="userinput7" class="form-control border-primary" name="username">
+                                      <option *ngFor="let item of preorigin">{{item.port_name}}</option>
+                                  </select> -->
+                                  <ng-select [items]="preorigin" id="userinput3" bindValue="port_name" formControlName="transhipment" bindLabel="port_name" placeholder="Select" >
+                                  </ng-select>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Container Info">
+                  <ng-template ngbTabContent>
+                  <div class="form">
+                      <div class="form-body">
+                        <br>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <div class="form-group row">
+                                    <label class="col-md-3 label-control" for="userinput1">Container Description: </label>
+                                    <div class="col-md-9">
+                                      <!-- not in form control name -->
+                                      <ng-select [items]="commudityMaster" id="userinput3" valueChanges="" bindValue="id" bindLabel="product_name" (change)='onChangeCommudity($event)' placeholder="Select" >
+                                      </ng-select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group row">
+                                    <label class="col-md-3 label-control" for="userinput1">Container Category: </label>
+                                    <div class="col-md-9">
+                                      <!-- not in form control name -->
+                                      <ng-select [items]="commudity" id="userinput3" valueChanges="" bindValue="category" bindLabel="category" placeholder="Select" (change)='onCategory($event)' >
+                                      </ng-select>
+                                    </div>
+                                  </div>
+                                </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-9">
+                                <div class="form-group row">
+                                    <label class="col-md-3 label-control" for="userinput1">Container Description In Details: </label>
+                                    <div class="col-md-9">
+                                        <textarea type="text" id="userinput1" class="form-control border-primary" form name="firstname" formControlName="commuditydetails" [(ngModel)]="commudityDetails" rows=4></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label class="col-md-3 label-control" for="userinput3">Marks And Number: </label>
+                                  <div class="col-md-9">
+                                    <input type="text" id="userinput3" class="form-control border-primary" name="username" [(ngModel)]="marksNo" formControlName="marksAndNumber" >
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- <div class="col-md-6">
+                                  <div class="form-group row">
+                                    <label class="col-md-3 label-control" for="userinput1">Container Description: </label>
+                                    <div class="col-md-9">
+                                      <ng-select [items]="commudityMaster" id="userinput3" valueChanges="" bindValue="id" bindLabel="product_name" (change)='onChangeCommudity($event)' placeholder="Select" >
+                                      </ng-select>
+                                    </div>
+                                  </div>
+                                </div> -->
+                            </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label class="col-md-3 label-control" for="userinput3">Seal No: </label>
+                                  <div class="col-md-9">
+                                    <input type="text" id="userinput3" class="form-control border-primary" name="username" [(ngModel)]="sealNo" formControlName="sealNo">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="form-group row">
+                                    <label class="col-md-3 label-control" for="userinput4">Container No: </label>
+                                    <div class="col-md-9">
+                                      <input type="text" id="userinput4" class="form-control border-primary" name="nickname" [(ngModel)]="containerno" formControlName="containerNos">
+                                    </div>
+                                  </div>
+                                </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-md-3 label-control" for="userinput3">Tracking Container No : </label>
+                              <div class="col-md-9">
+                                <input type="text" id="userinput3" class="form-control border-primary" name="username" formControlName="trackingContainerNo">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-md-3 label-control" for="userinput4">Container ISO : </label>
+                              <div class="col-md-9">
+                                <input type="text" id="userinput4" class="form-control border-primary" name="nickname" formControlName="containerISO">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput3">Port of Loading: </label>
+                                <div class="col-md-3">
+                                    <input type="text" id="userinput3" class="form-control border-primary" name="username" placeholder="code" formControlName="pol_code">
+                                </div>
+                                <div class="col-md-6">
+                                  <input type="text" id="userinput3" class="form-control border-primary" name="username" formControlName="pol_name">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput4">Port of Discharing:</label>
+                                <div class="col-md-3">
+                                    <input type="text" id="userinput3" class="form-control border-primary" name="username" placeholder="code" formControlName="pod_code">
+                                </div>
+                                <div class="col-md-6">
+                                  <input type="text" id="userinput3" class="form-control border-primary" name="username" formControlName="pod_name">
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput3">Departure Date :</label>
+                                <div class="col-md-9">
+                                  <input type="date" id="userinput3" class="form-control border-primary" name="username" formControlName="departureDate">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput4">Arrive Date :</label>
+                                <div class="col-md-9">
+                                  <input type="date" id="userinput4" class="form-control border-primary" name="nickname" formControlName="arriveDate">
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput3">Measurement :</label>
+                                <div class="col-md-9">
+                                  <input type="text" id="userinput3" class="form-control border-primary" name="username" formControlName="measurement">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput4">Total Charges :</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="userinput4" class="form-control border-primary" name="nickname" formControlName="totalCharges">
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput3">Max Gross Weight (MT):</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="userinput3" class="form-control border-primary" name="username" formControlName="maxGrossWeight">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput4">Container Gross Weight (MT):</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="userinput4" class="form-control border-primary" name="nickname" formControlName="containerGrossWeight"> 
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput3">No of BLs:</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="userinput3" class="form-control border-primary" name="username" formControlName="noBl">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput4">On Board Date:</label>
+                                <div class="col-md-9">
+                                  <input type="date" id="userinput4" class="form-control border-primary" name="nickname" formControlName="obd">
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput3">Container Package:</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="userinput3" class="form-control border-primary" name="username" formControlName="conPackages">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput4">Loadable Gross Weight:</label>
+                                <div class="col-md-9">
+                                  <input type="text" id="userinput4" class="form-control border-primary" name="nickname" formControlName="loadGrossWeight">
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput3">for the carrier:</label>
+                                <div class="col-md-9">
+                                  <input type="text" id="userinput3" class="form-control border-primary" name="username" formControlName="forTheCarrier">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput4">Ex.Rate:</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="userinput4" class="form-control border-primary" name="nickname" formControlName="excRate">
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput3">Unit:</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="userinput3" class="form-control border-primary" name="username" formControlName="units">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput4">Prepaid:</label>
+                                <div class="col-md-9">
+                                  <input type="text" id="userinput4" class="form-control border-primary" name="nickname" formControlName="prepaid">
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput3">No of Container & Pkgs:</label>
+                                <div class="col-md-9">
+                                  <textarea type="number" id="userinput3" class="form-control border-primary" name="username" formControlName="noContainerPkgs"></textarea>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput4">Freight and Charges:</label>
+                                <div class="col-md-9">
+                                  <input type="text" id="userinput4" class="form-control border-primary" name="nickname" formControlName="freightCharges">
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput3">Collect:</label>
+                                <div class="col-md-9">
+                                  <input type="text" id="userinput3" class="form-control border-primary" name="username" formControlName="collect">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput4">Declared Value:</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="userinput4" class="form-control border-primary" name="nickname" formControlName="declaredValue">
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput3">Dated At:</label>
+                                <div class="col-md-9">
+                                  <input type="date" id="userinput3" class="form-control border-primary" name="username" formControlName="datedAt">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput4">Tracking Container Description:</label>
+                                <div class="col-md-9">
+                                  <textarea type="text" id="userinput4" class="form-control border-primary" name="nickname" formControlName="containerDiscription"></textarea>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label class="col-md-3 label-control" for="userinput3">Remark:</label>
+                                  <div class="col-md-9">
+                                    <textarea type="date" id="userinput3" class="form-control border-primary" name="username" formControlName="remarks"></textarea>
+                                  </div>
+                                </div>
+                              </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput4">Delivery Agent:</label>
+                                <div class="col-md-9">
+                                  <textarea type="text" id="userinput4" class="form-control border-primary" name="nickname" formControlName="deliveryAgent"></textarea>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput3">Remark:</label>
+                                <div class="col-md-9">
+                                  <textarea type="date" id="userinput3" class="form-control border-primary" name="username"></textarea>
+                                </div>
+                              </div>
+                            </div> -->
+                        </div>
+                      </div>
+                  </div>
+                  </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Shipment Status Infomation">
+                  <ng-template ngbTabContent>
+                  <div class="form">
+                      <div class="form-body">
+                        <br>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-md-3 label-control" for="userinput1">Ctnr Date:</label>
+                              <div class="col-md-9">
+                                <input type="date" id="userinput1" class="form-control border-primary" name="firstname" formControlName="ctnrDate">
+                              </div>
+                            </div>
+                          </div>
+                          <!-- <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput1">Voyage No:</label>
+                                <div class="col-md-9">
+                                  <input type="text" id="userinput1" class="form-control border-primary" name="firstname" [(ngModel)]="voyageno" formControlName="voyageno1">
+                                </div>
+                              </div>
+                            </div> -->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput1">Status Details:</label>
+                                <div class="col-md-9">
+                                  <input type="text" id="userinput1" class="form-control border-primary" name="firstname" formControlName="statusDetails">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label class="col-md-3 label-control" for="userinput1">Vessel Name:</label>
+                                  <div class="col-md-9">
+                                    <input type="text" id="userinput1" class="form-control border-primary" name="firstname" [value]="selectvessel" formControlName="vesselName1">
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-md-3 label-control" for="userinput1">Ctnr Depot Name:</label>
+                                <div class="col-md-9">
+                                  <input type="text" id="userinput1" class="form-control border-primary" name="firstname" formControlName="ctnrDepotNo">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label class="col-md-3 label-control" for="userinput1">Book No:</label>
+                                  <div class="col-md-9">
+                                    <input type="number" id="userinput1" class="form-control border-primary" name="firstname" formControlName="bookNo">
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="form-actions right">
+                          <button type="button" class="btn btn-raised btn-warning mr-1">
+                            <i class="ft-x"></i> Cancel
+                          </button>
+                          <button type="submit" class="btn btn-raised btn-primary" >
+                            <i class="fa fa-check-square-o"></i> Save
+                          </button>
+                      </div>
+                  </div>  
+                  </ng-template>    
+                </ngb-tab>
+            <!-- </form> -->
+          </ngb-tabset>
+          {{subValues|json}}
+        </form>
+            <!-- end content writing -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Flat Buttons Ends -->
+  </div>
+
+</section>

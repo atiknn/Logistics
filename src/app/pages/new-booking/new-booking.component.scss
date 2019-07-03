@@ -1,0 +1,22 @@
+.mat-tab-label {
+    color: blue;
+}
+
+/* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+    color: red;
+    font-size: 20px;
+}
+
+.mat-tab-label{
+    font-size: 20px;
+}
+
+/* Styles for the ink bar */
+.mat-ink-bar {
+    background-color: green;
+}
+
+// table, th, td {
+//     border: 1px solid black;
+//   }

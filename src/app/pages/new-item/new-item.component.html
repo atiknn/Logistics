@@ -1,0 +1,110 @@
+<section id="buttons">
+  <!-- <div class="row  text-left">
+    <div class="col-sm-12 mt-2">
+      <div class="content-header">New Booking</div>
+    </div>
+  </div> -->
+  <div class="row text-left">
+    <!--Flat Buttons Starts -->
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">New Item</h4>
+          <!-- <p>Use class <code>.btn-flat</code> for flat buttons.</p> -->
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+              <ngb-tabset>
+                  <ngb-tab title="Item List">
+                    <ng-template ngbTabContent>
+                      <table class="table table-responsive-md text-center">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Item Name</th>
+                            <th>Unit</th>
+                            <th>Amount</th>
+                            <th>Delete</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let item of newItemsList">
+                            <td>{{item.id}}</td>
+                            <td>{{item.item_name}}</td>
+                            <td>{{item.unit}}</td>
+                            <td>{{item.amount}}</td>
+                            <td>
+                              <!-- <a class="info p-0" data-original-title="" title="">
+                                <i class="ft-user font-medium-3 mr-2"></i>
+                              </a>
+                              <a class="success p-0" data-original-title="" title="">
+                                <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                              </a> -->
+                              <a class="danger p-0" data-original-title="" title="" (click)="deleteItem(item.id)">
+                                <i class="ft-x font-medium-3 mr-2"></i>
+                              </a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </ng-template>
+                  </ngb-tab>
+                  <ngb-tab>
+                    <ng-template ngbTabTitle> New Records</ng-template>
+                    <ng-template ngbTabContent>
+                        <div *ngIf="msg" [ngClass]="alerts" role="alert">
+                            {{msg}}
+                        </div>
+                        <form class="form form-horizontal" [formGroup]="regularForms" (ngSubmit)="onsubmit(regularForms.value)" role="form">
+                            <div class="form">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                          <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput1">Item Name:</label>
+                                            <div class="col-md-9">
+                                              <input type="text" id="userinput1" class="form-control border-primary" formControlName="item_name">
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>   
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                          <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput1">Unit:</label>
+                                            <div class="col-md-9">
+                                              <input type="number" id="userinput1" class="form-control border-primary" formControlName="unit">
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div> 
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                          <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput1">Amount:</label>
+                                            <div class="col-md-9">
+                                              <input type="number" id="userinput1" class="form-control border-primary" formControlName="amount">
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div> 
+                                    <div class="form-actions right">
+                                        <button type="button" class="btn btn-raised btn-warning mr-1">
+                                          <i class="ft-x"></i> Cancel
+                                        </button>
+                                        <button type="submit" class="btn btn-raised btn-primary" >
+                                          <i class="fa fa-check-square-o"></i> Save
+                                        </button>
+                                    </div> 
+                                </div>
+                            </div>
+                          </form>
+                    </ng-template>
+                  </ngb-tab>
+                </ngb-tabset>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>
+</section>      

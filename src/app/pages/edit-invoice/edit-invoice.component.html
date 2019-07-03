@@ -1,0 +1,261 @@
+
+<section id="extended">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <!-- {{newBooking|json}} -->
+      <div class="card">
+        <div class="card-content">
+            <div *ngIf="msg" [ngClass]="alerts" role="alert">
+                {{msg}}
+            </div>
+            <form [formGroup]="regularForms" (ngSubmit)="onsubmit(regularForms.value)" role="form">
+            <div class="card-body">
+                <div class="panel-body">
+                    <div class="row">
+                      <div class="col-lg-8">
+                        <div class="form-group">
+                          <label>Shipping Agent / Forward Agent : </label>
+                          <!-- <textarea id="forward_agent" class="form-control" formControlName="forword_agent" rows="2"></textarea> -->
+                          <input type="text"  id="receipt_no" class="form-control" [(ngModel)]="forword_agent"  formControlName="forword_agent">
+                        </div>
+                        <div class="form-group">
+                          <label>Shipping Agent/ Notify Agent : </label>
+                          <!-- <textarea  class="form-control" rows="2" formControlName="notify_agent"></textarea> -->
+                          <input type="text"  id="receipt_no" class="form-control" [(ngModel)]="notify_agent" formControlName="notify_agent">
+                        </div>
+                        <div class="form-group">
+                          <label>Particulars : </label>
+                          <!-- <textarea  class="form-control" rows="2" formControlName="notify_agent"></textarea> -->
+                          <textarea  class="form-control" rows="2" [(ngModel)]="commudity" formControlName="particulars"></textarea>
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="form-group">
+                          <label> Invoice No : </label>
+                          <input type="text"  id="receipt_no" class="form-control" [(ngModel)]="randomnumber" formControlName="receipt_no">
+                        </div>
+                        <div class="form-group">
+                          <label> Invoice Date : </label>
+                          <input type="date" id="receipt_date" class="form-control" [(ngModel)]="invoiceDate" formControlName="receipt_date">
+                        </div>
+                
+                        <div class="form-group">
+                          <label> Customer Code : </label>
+                          <input name="customer_code" id="customer_code" value="" class="form-control" formControlName="customer_code">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <div class="panel panel-info">
+                  <h1>Freight Charges </h1>
+                  <div class="form-row">
+                      <div class="form-group col-md-2">
+                        <label for="inputState">Item</label>
+                        <!-- <select id="inputState" class="form-control">
+                          <option selected>Choose...</option>
+                          <option>...</option>
+                        </select> -->
+                      </div>
+                      <div class="form-group col-md-2">
+                          <label for="inputCity">Unit Price</label>
+                          <!-- <input type="text" class="form-control" id="inputCity"> -->
+                        </div>
+                      <div class="form-group col-md-2">
+                        <label for="inputZip">Qty/Weight</label>
+                        <!-- <input type="text" class="form-control" id="inputZip"> -->
+                      </div>
+                      <div class="form-group col-md-2">
+                          <label for="inputZip">Unit</label>
+                          <!-- <input type="text" class="form-control" id="inputZip"> -->
+                      </div>
+                      <div class="form-group col-md-2">
+                          <label for="inputZip">AMT_USD_(1)</label>
+                          <!-- <input type="text" class="form-control" id="inputZip"> -->
+                      </div>
+                      <div class="form-group col-md-2">
+                          <label for="inputZip">AMT_USD_(2)</label>
+                          <!-- <input type="text" class="form-control" id="inputZip"> -->
+                      </div>
+                    </div>
+                  
+                    <div formArrayName="affc" *ngFor="let other of regularForms.get('affc')['controls']; let i = index">
+                      <div [formGroupName]="i">
+                          <div class="form-row">
+                          <div class="form-group col-md-2">
+                            <!-- <select id="inputState" class="form-control" formControlName="affcchargesitems">
+                              <option selected>Choose...</option>
+                              <option>...</option>
+                            </select> -->
+                            <ng-select [items]="newItemsList" id="userinput3" bindValue="item_name" formControlName="affcchargesitems" (change)="getaffcCharges($event,i)" bindLabel="item_name" placeholder="Select" >
+                            </ng-select>
+                          </div>
+                          <div class="form-group col-md-2">
+                              <input type="text" class="form-control" id="inputCity" formControlName="affunitPrice">
+                              <a *ngIf="regularForms.get('affc').length > 1" (click)="removeFreightChargeButton(i)">Remove</a>
+                            </div>
+                          <div class="form-group col-md-2">
+                            <input type="text" class="form-control" id="inputZip" formControlName="affQty" (keyup)="getaffcQty($event, i)">
+                          </div>
+                          <div class="form-group col-md-2">
+                              <input type="text" class="form-control" id="inputZip" formControlName="affkgs">
+                          </div>
+                          <div class="form-group col-md-2">
+                              <input type="text" class="form-control" id="inputZip" formControlName="aff_amt_usd1">
+                          </div>
+                          <div class="form-group col-md-2">
+                              <input type="text" class="form-control" id="inputZip" formControlName="aff_amt_usd2">
+                          </div>
+                        </div>  
+                    </div>
+                        
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                        </div>
+                        <div class="form-group col-md-2">
+                        </div>
+                        <div class="form-group col-md-2">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <button type="button" class="btn btn-default" (click)="addFreightChargeButton()">Add Ocean Freight</button>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="">FREIGHT CHARGES:</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="text" class="form-control" id="inputZip" [(ngModel)]="affcmodel" formControlName="totalsffc">
+                        </div>
+                    </div>    
+                </div>
+                <div class="panel panel-info">
+                    <h1>Additional Freight Charges </h1>
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                          <label for="inputState">Item</label>
+                          <!-- <select id="inputState" class="form-control">
+                            <option selected>Choose...</option>
+                            <option>...</option>
+                          </select> -->
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="inputCity">Unit Price</label>
+                            <!-- <input type="text" class="form-control" id="inputCity"> -->
+                          </div>
+                        <div class="form-group col-md-2">
+                          <label for="inputZip">Qty/Weight</label>
+                          <!-- <input type="text" class="form-control" id="inputZip"> -->
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="inputZip">Unit</label>
+                            <!-- <input type="text" class="form-control" id="inputZip"> -->
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="inputZip">AMT_USD_(1)</label>
+                            <!-- <input type="text" class="form-control" id="inputZip"> -->
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="inputZip">AMT_USD_(2)</label>
+                            <!-- <input type="text" class="form-control" id="inputZip"> -->
+                        </div>
+                      </div>
+
+                    <div formArrayName="adlc" *ngFor="let other of regularForms.get('adlc')['controls']; let i = index">
+                      <div  [formGroupName]="i">
+                          <div class="form-row">
+                              <div class="form-group col-md-2">
+                                <!-- <select id="inputState" class="form-control" formControlName="adlCharges">
+                                  <option selected>Choose...</option>
+                                  <option>...</option>
+                                </select> -->
+                                <ng-select [items]="newItemsList" id="userinput3" bindValue="item_name" formControlName="adlCharges" bindLabel="item_name" (change)="getadlCharges($event, i)" placeholder="Select" >
+                                </ng-select>
+                              </div>
+                              <div class="form-group col-md-2">
+                                  <input type="number" class="form-control" id="inputCity" formControlName="adlUnit">
+                                  <a *ngIf="regularForms.get('adlc').length > 1" (click)="removeAdditionalChargesButton(i)">Remove</a>
+                                </div>
+                              <div class="form-group col-md-2">
+                                <input type="number" class="form-control" id="inputZip" formControlName="adlqty"  (keyup)="getadlQty($event, i)">
+                              </div>
+                              <div class="form-group col-md-2">
+                                  <input type="text" class="form-control" id="inputZip" formControlName="adlkgs">
+                              </div>
+                              <div class="form-group col-md-2">
+                                  <input type="text" class="form-control" id="inputZip" formControlName="adlAmt1">
+                              </div>
+                              <div class="form-group col-md-2">
+                                  <input type="text" class="form-control" id="inputZip" formControlName="adlAmt2">
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    
+                      <div class="form-row">
+                          <div class="form-group col-md-2">
+                          </div>
+                          <div class="form-group col-md-2">
+                          </div>
+                          <div class="form-group col-md-2">
+                          </div>
+                          <div class="form-group col-md-2">
+                              <button type="button" class="btn btn-default" (click)=" addAdditionalChargesButton()">Add Additional</button>
+                          </div>
+                          <div class="form-group col-md-2">
+                              <label for="">ADDITIONAL CHARGES:</label>
+                          </div>
+                          <div class="form-group col-md-2">
+                              <input type="text" class="form-control" id="inputZip" formControlName="totaladlcc" [(ngModel)]="adlcmodel">
+                          </div>
+                      </div>  
+                      <div class="form-row">
+                          <div class="form-group col-md-2">
+                          </div>
+                          <div class="form-group col-md-2">
+                          </div>
+                          <div class="form-group col-md-2">
+                          </div>
+                          <div class="form-group col-md-2">
+                              <!-- <button type="button" class="btn btn-default" (click)=" addAdditionalChargesButton()">Add Additional</button> -->
+                          </div>
+                          <div class="form-group col-md-2">
+                              <label for="">Total CHARGES:</label>
+                          </div>
+                          <div class="form-group col-md-2">
+                              <input type="text" class="form-control" id="inputZip" formControlName="totalCharges">
+                          </div>
+                      </div>  
+                  </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                      <label> Cheque / DD  : </label>
+                        <input type="text" name="cheque" id="cheque" class="form-control" formControlName="cheque">
+                    </div>
+                  </div>                                                  
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label> Remarks : </label>
+                        <input type="text" name="remarks" id="remarks" class="form-control" formControlName="remarks" required>
+                        <div *ngIf="regularForms.get('remarks').hasError('required') && regularForms.get('remarks').touched">
+                            <span class="text-danger align-middle">
+                                remarks required
+                            </span>
+                          </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="form-actions right">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> Cancel
+                </button>
+                <button type="submit" class="btn btn-raised btn-primary" [disabled]="!regularForms.valid">
+                  <i class="fa fa-check-square-o"></i> Save
+                </button>
+            </div>
+            </form>    
+        </div>
+      </div>
+    </div>
+  </div>
+</section>           
