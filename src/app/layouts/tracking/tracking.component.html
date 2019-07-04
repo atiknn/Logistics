@@ -1,3 +1,45 @@
-<p>
-  tracking works!
-</p>
+<div class="container-fluid">
+  <br>
+  <br>
+  <div style="text-align: center;">
+    <h1>Find By Bill of Leading</h1>
+  </div>
+  <section id="form-action-layouts">
+      <div class="row text-left">
+        <div class="col-sm-12">
+          <div class="content-header"></div>
+        </div>
+      </div>
+      <div class="row text-left">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                  <!-- <h1>User Managements</h1> -->
+              </div>
+              <div class="card-content">
+                  <form class="form form-horizontal" [formGroup]="regularForms" (ngSubmit)="onsubmit(regularForms.value)" role="form">
+                      <div class="form-body">
+                        <h4 class="form-section"><i class="ft-info"></i>BL Tracking</h4>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-md-3 label-control" for="userinput1">BL No: </label>
+                              <div class="col-md-9">
+                                <input type="text" id="userinput1" class="form-control" formControlName="name" name="name" required>
+                                <div *ngIf="regularForms.get('name').hasError('required') && regularForms.get('name').touched">
+                                  <span class="text-danger align-middle">
+                                  BL no required
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+              </div>
+            </div>
+          </div>
+      </div>  
+  </section>
+</div>

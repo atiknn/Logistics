@@ -14,6 +14,7 @@ export const CONTENT_ROUTES: Routes = [
       loadChildren: './pages/login/login-page.module#LoginPageModule',
     },
     {
-      
+      path: 'tracking', 
+      loadChildren: './layouts/tracking/tracking.module#TrackingModule'
     }
 ];
