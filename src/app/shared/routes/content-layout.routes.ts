@@ -12,5 +12,8 @@ export const CONTENT_ROUTES: Routes = [
     {
       path: 'login',
       loadChildren: './pages/login/login-page.module#LoginPageModule',
+    },
+    {
+      
     }
 ];
